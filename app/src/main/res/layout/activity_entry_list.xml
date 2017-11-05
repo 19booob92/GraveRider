@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#00AADD"
+        android:drawSelectorOnTop="false" />
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:background="#ffffff"
+        android:text="Brak danych" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addItem"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="250px"
+        android:layout_marginTop="90px"
+        android:layout_weight="0"
+        android:clickable="true"
+        android:visibility="visible"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:elevation="2dp"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="274dp" />
+</LinearLayout>
+

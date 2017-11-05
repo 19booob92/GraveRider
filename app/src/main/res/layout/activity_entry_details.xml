@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="placekeeper.commit.com.placekeeper.EntryDetails">
+
+    <Button
+        android:id="@+id/localization"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lokalizuj"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:text="Imię"
+        android:layout_marginTop="150px"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="119dp" />
+
+    <EditText
+        android:id="@+id/surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="270px"
+        android:inputType="textPersonName"
+        android:text="Nazwisko"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="192dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/saveBtn"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginTop="200px"
+        android:clickable="true"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="439dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/takePhoto"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200px"
+        android:layout_marginLeft="200px"
+        app:backgroundTint="@android:color/holo_green_light"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="274dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/checkLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100px"
+        android:layout_gravity="right"
+        android:clickable="false"
+        android:visibility="gone"
+        android:backgroundTint="@android:color/holo_green_dark"
+        app:srcCompat="@android:drawable/checkbox_on_background" />
+
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:layout_width="86dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="50px"
+        android:visibility="gone"
+        android:backgroundTint="@android:color/holo_green_dark"
+        tools:layout_editor_absoluteX="273dp" />
+
+    <ImageView
+        android:id="@+id/preview"
+        android:layout_width="162dp"
+        android:layout_height="162dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="250px"
+        android:layout_marginLeft="10px"
+
+        app:srcCompat="@android:drawable/dialog_frame"
+        tools:layout_editor_absoluteY="354dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/provide"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginTop="200px"
+        android:clickable="true"
+        app:backgroundTint="@android:color/holo_green_light"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="439dp"
+        android:visibility="gone"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        app:backgroundTint="@android:color/holo_green_light"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:visibility="gone"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+</android.support.design.widget.CoordinatorLayout>

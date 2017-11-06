@@ -15,6 +15,7 @@ public class EntryData implements BaseColumns {
     public static final String COLUMN_NAME_NAME = "name";
     public static final String COLUMN_NAME_SURNAME = "surname";
     public static final String COLUMN_NAME_IMAGE = "image";
+    public static final String COLUMN_NAME_CATEGORY = "category";
 
     private long id;
 
@@ -28,7 +29,25 @@ public class EntryData implements BaseColumns {
 
     private Bitmap imageBitmap;
 
+    private String category;
+
     public EntryData() {
+    }
+
+    public EntryData(long id, String name, String surname, String lattitude, String longtittude, Bitmap image, String category) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.lattitude = lattitude;
+        this.longtitude = longtittude;
+        this.imageBitmap = image;
+        this.category = category;
+    }
+
+    public EntryData(long id, String name, String surname) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
     }
 
     public EntryData(long id, String name, String surname, String lattitude, String longtittude, Bitmap image) {
@@ -38,12 +57,6 @@ public class EntryData implements BaseColumns {
         this.lattitude = lattitude;
         this.longtitude = longtittude;
         this.imageBitmap = image;
-    }
-
-    public EntryData(long id, String name, String surname) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
     }
 
     public String getLongtitude() {
@@ -92,6 +105,14 @@ public class EntryData implements BaseColumns {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override

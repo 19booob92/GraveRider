@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.TableLayout;
 import android.widget.TableRow.LayoutParams;
 
 import java.util.List;
@@ -19,11 +18,14 @@ import placekeeper.commit.com.placekeeper.dto.EntryData;
 public class EntryListActivity extends ListActivity {
 
     private ArrayAdapter<EntryData> adapter;
+    private String categoryName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_list);
+
+        fetchCategoryName();
 
         fillList();
 
@@ -34,7 +36,7 @@ public class EntryListActivity extends ListActivity {
 
     private void fillList() {
         EntryDetailsDAO entryDetailsDAO = new EntryDetailsDAO(getApplicationContext());
-        List<EntryData> allEntryData = entryDetailsDAO.findAll();
+        List<EntryData> allEntryData = entryDetailsDAO.findAll(categoryName);
 
         adapter = new ArrayAdapter<EntryData>(this, R.layout.data_row_layout, R.id.entry_row, allEntryData);
         setListAdapter(adapter);
@@ -44,11 +46,8 @@ public class EntryListActivity extends ListActivity {
     }
 
     private void setHeader() {
-        Bundle extras = getIntent().getExtras();
-        Category category = (Category) extras.get(Extra.CATEGORY_NAME.toString());
-
-        if (category != null) {
-            setTitle(category.toString());
+        if (categoryName != null) {
+            setTitle(categoryName);
         }
     }
 
@@ -59,7 +58,7 @@ public class EntryListActivity extends ListActivity {
             @Override
             public void onClick(View view) {
                 Intent entryDetails = new Intent(EntryListActivity.this, EntryDetails.class);
-                entryDetails.putExtra(Extra.CATEGORY_NAME.toString(), Category.GRAVES);
+                entryDetails.putExtra(Extra.CATEGORY_NAME.toString(), categoryName);
                 startActivity(entryDetails);
             }
         });
@@ -71,7 +70,7 @@ public class EntryListActivity extends ListActivity {
         EntryData selectedItem = (EntryData) getListView().getItemAtPosition(position);
 
         Intent entryDetails = new Intent(EntryListActivity.this, EntryDetails.class);
-        entryDetails.putExtra(Extra.CATEGORY_NAME.toString(), Category.GRAVES);
+        entryDetails.putExtra(Extra.CATEGORY_NAME.toString(), categoryName);
         entryDetails.putExtra(Extra.MODE_DATA.toString(), selectedItem.getId());
         startActivity(entryDetails);
     }
@@ -82,4 +81,10 @@ public class EntryListActivity extends ListActivity {
 
         fillList();
     }
+
+    public void fetchCategoryName() {
+        Bundle extras = getIntent().getExtras();
+        categoryName = extras.getString(Extra.CATEGORY_NAME.toString());
+    }
+
 }

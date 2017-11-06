@@ -20,7 +20,7 @@ import placekeeper.commit.com.placekeeper.dto.EntryData;
 
 public class EntryDetailsDAO extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "PlaceKeeper.db";
 
     private static final String SQL_CREATE_ENTRIES =
@@ -30,6 +30,7 @@ public class EntryDetailsDAO extends SQLiteOpenHelper {
                     EntryData.COLUMN_NAME_SURNAME + " TEXT," +
                     EntryData.COLUMN_NAME_LATTITUDE + " TEXT," +
                     EntryData.COLUMN_NAME_LONGTITUDE + " TEXT," +
+                    EntryData.COLUMN_NAME_CATEGORY + " TEXT," +
                     EntryData.COLUMN_NAME_IMAGE + " BLOB)";
 
     private static final String SQL_DELETE_ENTRIES =
@@ -65,6 +66,7 @@ public class EntryDetailsDAO extends SQLiteOpenHelper {
         values.put(EntryData.COLUMN_NAME_SURNAME, entryData.getSurname());
         values.put(EntryData.COLUMN_NAME_LATTITUDE, entryData.getLattitude());
         values.put(EntryData.COLUMN_NAME_LONGTITUDE, entryData.getLongtitude());
+        values.put(EntryData.COLUMN_NAME_CATEGORY, entryData.getCategory());
 
         byte[] byteArray = convertImageToByteArray(entryData);
         values.put(EntryData.COLUMN_NAME_IMAGE, byteArray);
@@ -85,7 +87,7 @@ public class EntryDetailsDAO extends SQLiteOpenHelper {
         return stream.toByteArray();
     }
 
-    public List<EntryData> findAll() {
+    public List<EntryData> findAll(String categoryName) {
         SQLiteDatabase db = getReadableDatabase();
 
         String[] projection = {
@@ -94,11 +96,14 @@ public class EntryDetailsDAO extends SQLiteOpenHelper {
                 EntryData.COLUMN_NAME_SURNAME,
         };
 
+        String selection = EntryData.COLUMN_NAME_CATEGORY + " = ?";
+        String[] selectionArgs = { categoryName };
+
         Cursor cursor = db.query(
                 EntryData.TABLE_NAME,
                 projection,
-                null,
-                null,
+                selection,
+                selectionArgs,
                 null,
                 null,
                 null

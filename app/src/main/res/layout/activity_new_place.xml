@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/colorPrimary"
     tools:context="placekeeper.commit.com.placekeeper.CategoriesActivity">
 
@@ -21,6 +22,22 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#00AADD"
+        android:drawSelectorOnTop="false" />
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:background="#ffffff"
+        android:text="Dodaj pierwszą kategorię." />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/newCategory"
         android:layout_width="61dp"
@@ -33,37 +50,4 @@
         tools:layout_editor_absoluteX="307dp"
         tools:layout_editor_absoluteY="495dp" />
 
-    <Button
-        android:id="@+id/friends_btn"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="150px"
-        android:background="@color/colorPrimaryDark"
-        android:clickable="true"
-        android:text="Znajomi"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/graves_btn"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="375px"
-        android:background="#995576"
-        android:clickable="true"
-        android:text="Groby"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/parking_btn"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="600px"
-        android:background="@android:color/darker_gray"
-        android:clickable="true"
-        android:text="Parkingi"
-        android:textSize="30sp" />
-
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

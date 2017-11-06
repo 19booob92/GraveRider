@@ -24,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import enums.Category;
 import enums.Extra;
 import placekeeper.commit.com.placekeeper.database.EntryDetailsDAO;
 import placekeeper.commit.com.placekeeper.dto.EntryData;
@@ -46,6 +45,8 @@ public class EntryDetails extends AppCompatActivity implements LocationListener 
 
     private EntryDetailsDAO entryDetailsDAO;
 
+    private String categoryName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,8 @@ public class EntryDetails extends AppCompatActivity implements LocationListener 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         entryDetailsDAO = new EntryDetailsDAO(getApplicationContext());
 
+        extractCategory();
+
         loadViewFields();
 
         initModel();
@@ -61,6 +64,11 @@ public class EntryDetails extends AppCompatActivity implements LocationListener 
         setHeader();
 
         setBtnListeners();
+    }
+
+    private void extractCategory() {
+        Bundle extras = getIntent().getExtras();
+        categoryName = extras.getString(Extra.CATEGORY_NAME.toString());
     }
 
     private void loadViewFields() {
@@ -158,6 +166,7 @@ public class EntryDetails extends AppCompatActivity implements LocationListener 
             public void onClick(View view) {
                 entryData.setName(nameEditText.getText().toString());
                 entryData.setSurname(surnameEditText.getText().toString());
+                entryData.setCategory(categoryName);
 
                 entryDetailsDAO.save(entryData);
 
@@ -198,11 +207,8 @@ public class EntryDetails extends AppCompatActivity implements LocationListener 
     }
 
     private void setHeader() {
-        Bundle extras = getIntent().getExtras();
-        Category category = (Category) extras.get(Extra.CATEGORY_NAME.toString());
-
-        if (category != null) {
-            setTitle(category.toString());
+        if (categoryName != null) {
+            setTitle(categoryName);
         }
     }
 
